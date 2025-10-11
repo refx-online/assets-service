@@ -6,7 +6,7 @@ from fastapi.responses import FileResponse
 from app.settings import ASSETS_DIR
 
 
-async def get_medal(medal: str) -> FileResponse | Response:
+async def get_medal(medal: str) -> FileResponse:
     """Im just not gonna use nginx"""
     file = ASSETS_DIR / medal
 

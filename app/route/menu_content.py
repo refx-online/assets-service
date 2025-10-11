@@ -7,17 +7,20 @@ from app.settings import MENU_ICON_URL
 from app.settings import MENU_ONCLICK_URL
 
 
-def get_menu_content() -> ORJSONResponse:
+async def get_menu_content() -> ORJSONResponse:
+    images = [
+        {
+            "image": i,
+            "url": MENU_ONCLICK_URL,
+            "IsCurrent": True,  # ??
+            "begins": None,  # ??
+            "expires": EXPIRES_IN,
+        }
+        for i in MENU_ICON_URL
+    ]
+
     return ORJSONResponse(
         content={
-            "images": [
-                {
-                    "image": MENU_ICON_URL,
-                    "url": MENU_ONCLICK_URL,
-                    "IsCurrent": True,  # ??
-                    "begins": None,  # ??
-                    "expires": EXPIRES_IN,
-                },
-            ],
+            "images": images,
         },
     )

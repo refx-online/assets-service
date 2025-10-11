@@ -1,12 +1,13 @@
 from __future__ import annotations
 
 from fastapi import APIRouter
+from fastapi import Response
 
 from . import get_seasonal
 from . import medals
 from . import menu_content
 
-router = APIRouter(tags=["Assets"])
+router = APIRouter(default_response_class=Response, tags=["Assets"])
 
 router.add_api_route("/menu-content.json", menu_content.get_menu_content)
 

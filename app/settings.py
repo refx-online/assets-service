@@ -22,7 +22,7 @@ PORT = int(os.environ["PORT"])
 
 SEASONAL_BGS = read_list(os.environ["SEASONAL_BGS"])
 
-MENU_ICON_URL = os.environ["MENU_ICON_URL"]
+MENU_ICON_URL = read_list(os.environ["MENU_ICON_URL"])
 MENU_ONCLICK_URL = os.environ["MENU_ONCLICK_URL"]
 
 EXPIRES_IN = os.environ["EXPIRES_IN"]
