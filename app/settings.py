@@ -28,3 +28,4 @@ MENU_ONCLICK_URL = os.environ["MENU_ONCLICK_URL"]
 EXPIRES_IN = os.environ["EXPIRES_IN"]
 
 ASSETS_DIR = Path.cwd() / ".data/assets"
+AVA_DIR = Path.cwd() / ".data/ava"

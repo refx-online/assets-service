@@ -3,6 +3,7 @@ from __future__ import annotations
 from fastapi import APIRouter
 from fastapi import Response
 
+from . import avatar
 from . import get_seasonal
 from . import medals
 from . import menu_content
@@ -15,4 +16,4 @@ router.add_api_route("/web/osu-getseasonal.php", get_seasonal.get_seasonal_bgs)
 
 router.add_api_route("/medals/client/{medal}", medals.get_medal)
 
-# TODO: will be used for storing replays in the future if possible
+router.add_api_route("/{id}", avatar.get_avatar)
