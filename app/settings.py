@@ -16,16 +16,25 @@ def read_bool(value: str) -> bool:
     return value.lower() in ("true", "1", "yes")
 
 
-DEBUG = read_bool(os.environ["DEBUG"])
-HOST = os.environ["HOST"]
-PORT = int(os.environ["PORT"])
+def getenv(name: str, default: str | None = None) -> str:
+    # NOTE: plain os.environ[name] dies with a bare KeyError at import time,
+    # which tells you nothing. fail fast with the actual var name instead.
+    value = os.environ.get(name, default)
+    if value is None:
+        raise RuntimeError(f"missing required env var: {name}")
+    return value
 
-SEASONAL_BGS = read_list(os.environ["SEASONAL_BGS"])
 
-MENU_ICON_URL = read_list(os.environ["MENU_ICON_URL"])
-MENU_ONCLICK_URL = os.environ["MENU_ONCLICK_URL"]
+DEBUG = read_bool(getenv("DEBUG", "false"))
+HOST = getenv("HOST", "0.0.0.0")
+PORT = int(getenv("PORT", "9929"))
 
-EXPIRES_IN = os.environ["EXPIRES_IN"]
+SEASONAL_BGS = read_list(getenv("SEASONAL_BGS", ""))
+
+MENU_ICON_URL = read_list(getenv("MENU_ICON_URL", ""))
+MENU_ONCLICK_URL = getenv("MENU_ONCLICK_URL", "")
+
+EXPIRES_IN = getenv("EXPIRES_IN", "")
 
 ASSETS_DIR = Path(os.environ.get("ASSETS_PATH", ".data/assets"))
 AVA_DIR = Path(os.environ.get("AVA_PATH", ".data/avatars"))
