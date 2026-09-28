@@ -14,8 +14,11 @@ async def get_avatar(id: int) -> FileResponse | Response:
         if file.exists():
             return FileResponse(file)
 
-    default = AVA_DIR / "default.jpg"
-    if default.exists():
-        return FileResponse(default)
+    # NOTE (local setup): default avatar may be any supported ext,
+    # not just jpg.
+    for ext in EXTS:
+        default = AVA_DIR / f"default.{ext}"
+        if default.exists():
+            return FileResponse(default)
 
     return Response(status_code=404)
